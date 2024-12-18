@@ -1,70 +1,104 @@
-Team_Castaing_Water_Quality_Analysis
+Water Potability Analysis
 
-Project Overview
+This project analyzes a dataset on water potability to assess the quality of water using various statistical and visualization techniques. The project is implemented in Python, leveraging popular libraries like pandas, NumPy, and Matplotlib.
 
-This project analyzes water quality data to determine trends, visualize parameters, and assess potability. Using libraries like Pandas, NumPy, and Matplotlib, the project preprocesses raw data, explores statistical relationships, and generates insightful visualizations.
-
-Features
-
-Data Preprocessing: Handles missing values and normalizes data.
-Statistical Analysis: Provides descriptive statistics and computes correlations between parameters.
-Visualization: Creates scatter plots, histograms, and line charts to explore relationships and trends.
-Potability Analysis: Assesses water quality for potability (safe or unsafe to drink).
-Technologies Used
-
-Python
-Pandas: For data manipulation and analysis.
-NumPy: For numerical computations.
-Matplotlib: For data visualization.
 Dataset
 
-The project uses a water quality dataset with the following columns:
+The dataset used for this project is water_potability.csv. It contains information on water quality parameters that can help determine whether water is potable or not.
 
-pH: Acidity of the water.
-Hardness: Level of hardness in the water.
-Solids: Amount of dissolved solids in water.
-Chloramines: Level of chloramines.
-Sulfate: Concentration of sulfate.
-Conductivity: Water's electrical conductivity.
-Organic_carbon: Organic carbon level.
-Trihalomethanes: Concentration of trihalomethanes.
-Turbidity: Clarity of the water.
-Potability: Indicates if water is potable (1) or not potable (0).
-Sample Dataset File
-water_quality_data.csv (Ensure this file is in the project directory).
+Features:
 
-Getting Started
+pH: Measure of the acidity or alkalinity of water.
 
-Prerequisites
-Ensure you have Python 3.x installed along with the required libraries:
+Turbidity: Measure of water clarity in NTU.
 
-Pandas
-NumPy
-Matplotlib
-Install dependencies using pip:
+Dissolved Oxygen: Amount of oxygen dissolved in water (mg/L).
+
+Organic Carbon: Organic material present in water (mg/L).
+
+Conductivity: Water's ability to conduct electricity (µS/cm).
+
+Project Workflow
+
+Step 1: Load the Dataset
+
+The dataset is loaded from the specified file path using pandas.
+
+file_path = "/path/to/your/dataset.csv"
+data = pd.read_csv(file_path)
+
+Step 2: Dataset Information
+
+Initial inspection of the dataset is done to understand its structure and identify missing values using:
+
+data.head()
+
+data.info()
+
+Step 3: Handle Missing Data
+
+Missing data is filled using the mean of the respective columns:
+
+data = data.fillna(data.mean())
+
+Step 4: Descriptive Statistics
+
+Basic statistical measures such as mean, standard deviation, and percentiles are computed:
+
+print(data.describe())
+
+Step 5: Correlation Analysis
+
+A correlation matrix is generated to analyze the relationships between different features:
+
+correlation_matrix = data.corr()
+print(correlation_matrix)
+
+Step 6: Data Visualization
+
+Scatter Plot: Relationship between pH and Turbidity.
+
+Histogram: Distribution of Organic Carbon.
+
+Line Plot (Optional): Conductivity over time (if time data is available).
+
+Examples:
+
+# Scatter Plot for pH vs Turbidity
+plt.scatter(data['pH'], data['Turbidity'], c='blue', alpha=0.5)
+
+Step 7: Save Processed Data
+
+The processed dataset is saved to a new CSV file for further analysis:
+
+processed_file_path = 'processed_water_quality_data.csv'
+data.to_csv(processed_file_path, index=False)
+
+Installation and Requirements
+
+Libraries:
+
+pandas: Data manipulation and analysis.
+
+numpy: Numerical computations.
+
+matplotlib: Data visualization.
+
+Installation:
+
+To install the required libraries, run:
 
 pip install pandas numpy matplotlib
-Running the Script
-Clone the repository:
-git clone https://github.com/your-username/water-quality-analysis.git
-cd water-quality-analysis
-Place your dataset (water_quality_data.csv) in the project folder.
-Run the script:
-python water_analysis.py
+
 Results
 
-Processed data is saved as processed_water_quality_data.csv.
-Visualizations include:
-Scatter plots for pH vs. Turbidity.
-Histograms for parameters like Dissolved Oxygen or Organic Carbon.
-Line charts for time-based analysis (if applicable).
-Project Structure
+The project provides insights into:
 
-water-quality-analysis/
-├── water_analysis.py         # Main analysis script
-├── water_quality_data.csv    # Dataset (placeholder)
-├── processed_water_quality_data.csv # Processed data (output)
-├── README.md                 # Project documentation
-Contributing
+Statistical relationships between water quality parameters.
 
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+Visualizations to understand data distributions and trends.
+
+Acknowledgements
+
+Thanks to the creators of the water_potability.csv dataset for providing the data for this analysis.
+
